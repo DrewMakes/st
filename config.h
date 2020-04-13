@@ -1,11 +1,15 @@
 /* See LICENSE file for copyright and license details. */
 
+/* https://github.com/avahe-kellenberger/st 
+ * This requires placing externalpipe.sh in $HOME/.config/st/ and dmenu installed
+ */
+
 /*
  * appearance
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "Noto Sans Mono:pixelsize=15:antialias=true:autohint=true";
 static char *font2[] = { "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
 static int borderpx = 2;
 
@@ -105,46 +109,49 @@ unsigned int tabspaces = 4;
 /* bg opacity */
 float alpha = 1.0;
 
-/* Terminal colors (16 first used in escape sequence) */
+// Base16 Atelier Dune dark - simple terminal color setup
+// Bram de Haan (http://atelierbramdehaan.nl)
 static const char *colorname[] = {
+	/* Normal colors */
+	"#20201d", /*  0: Base 00 - Black   */
+	"#d73737", /*  1: Base 08 - Red     */
+	"#60ac39", /*  2: Base 0B - Green   */
+	"#ae9513", /*  3: Base 0A - Yellow  */
+	"#6684e1", /*  4: Base 0D - Blue    */
+	"#b854d4", /*  5: Base 0E - Magenta */
+	"#1fad83", /*  6: Base 0C - Cyan    */
+	"#a6a28c", /*  7: Base 05 - White   */
 
-  /* 8 normal colors */
-  [0] = "#1c1b19", /* black   */
-  [1] = "#ef2f27", /* red     */
-  [2] = "#519f50", /* green   */
-  [3] = "#fbb829", /* yellow  */
-  [4] = "#2c78bf", /* blue    */
-  [5] = "#e02c6d", /* magenta */
-  [6] = "#0aaeb3", /* cyan    */
-  [7] = "#918175", /* white   */
+	/* Bright colors */
+	"#7d7a68", /*  8: Base 03 - Bright Black */
+	"#d73737", /*  9: Base 08 - Red          */
+	"#60ac39", /* 10: Base 0B - Green        */
+	"#ae9513", /* 11: Base 0A - Yellow       */
+	"#6684e1", /* 12: Base 0D - Blue         */
+	"#b854d4", /* 13: Base 0E - Magenta      */
+	"#1fad83", /* 14: Base 0C - Cyan         */
+	"#fefbec", /* 15: Base 05 - Bright White */
 
-  /* 8 bright colors */
-  [8]  = "#4f4e4c", /* black   */
-  [9]  = "#f75341", /* red     */
-  [10] = "#98bc37", /* green   */
-  [11] = "#fed06e", /* yellow  */
-  [12] = "#68A8E4", /* blue    */
-  [13] = "#ff5c8f", /* magenta */
-  [14] = "#53fde9", /* cyan    */
-  [15] = "#fce8c3", /* white   */
+	/* A few more colors */
 
-  [255] = 0,
+	"#b65611", /* 16: Base 09 */
+	"#d43552", /* 17: Base 0F */
+	"#292824", /* 18: Base 01 */
+	"#6e6b5e", /* 19: Base 02 */
+	"#999580", /* 20: Base 04 */
+	"#e8e4cf", /* 21: Base 06 */
 
-  /* special colors */
-  [256] = "#1c1b19", /* background */
-  [257] = "#fce8c3", /* foreground */
+	[255] = 0,
+
+	[256] = "#a6a28c", /* default fg: Base 05 */
+	[257] = "#20201d", /* default bg: Base 00 */
 };
 
-
-/*
- * Default colors (colorname index)
- * foreground, background, cursor, reverse cursor
- */
-unsigned int defaultbg = 256;
-unsigned int defaultfg = 257;
-static unsigned int defaultcs = 257;
-/* TODO: What is rcs */
-static unsigned int defaultrcs = 256;
+// Foreground, background, cursor, and reversed cursor colors
+unsigned int defaultfg = 256;
+unsigned int defaultbg = 257;
+static unsigned int defaultcs = 256;
+static unsigned int defaultrcs = 257;
 
 /*
  * Default shape of cursor
